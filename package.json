@@ -18,6 +18,7 @@
   "homepage": "https://github.com/datahubtrader-team/DHT_OutboundCommunications#readme",
   "dependencies": {
     "dotenv": "^7.0.0",
+    "logger": "0.0.1",
     "mongodb": "^3.2.3",
     "opn": "^6.0.0",
     "request": "^2.88.0",

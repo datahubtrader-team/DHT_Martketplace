@@ -6,13 +6,19 @@ var amqp = require('amqplib/callback_api');
 var rest = require('rest-facade');
 require('dotenv').config()
 
+// node/common.js style 
+var logger = require('../../node_modules/logger').createLogger(); // logs to STDOUT
+var logger = require('../../node_modules/logger').createLogger('development.log'); // logs to a file
+
 // Create and Save a new Data provider msg
 exports.create = (req, res) => {
     // Validate request
     if (!req.body.message) {
         return res.status(400).send({
-            message: "Data provider msg content can not be empty " + req.body
-        });
+                message: "Request body to POST broadcast data endpoint can not be empty " + req.body
+            }),
+            logger.error("POST broacast data endpoint was empty. Request: ", req.body.message),
+            logger.error("Response: ", res.body);
     }
     res.status(201);
 
@@ -31,12 +37,15 @@ exports.create = (req, res) => {
             res.send(data);
             //res.end("Test");
             addMsgOntoQueue(dataprovider.toString());
+            logger.info('POST broadcast data from data provider. Response: ', data);
 
-            //TODO: Call POST data-provider endpoint in Marketplace service
         }).catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while creating the data provider msg."
-            });
+                    message: err.message || "Some error occurred while creating the data provider msg."
+                },
+                logger.error(err.message, "Error occurred while POST broadcast data from data provider request")
+            );
+
         });
 };
 
@@ -55,8 +64,6 @@ function addMsgOntoQueue(dataprovider) {
         }, 500);
     });
 }
-
-
 
 // Retrieve and return all DataProvider msg from the database.
 exports.findAll = (req, res) => {

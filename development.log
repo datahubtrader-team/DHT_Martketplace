@@ -1,0 +1,16 @@
+
+info [Tue Apr 23 2019 12:56:06 GMT+0100 (British Summer Time)]  Logged!!
+
+
+info [Tue Apr 23 2019 13:00:56 GMT+0100 (British Summer Time)]  POST broadcast data from data provider { _id: 5cbefe78c4b2174481d743ae,
+  firstName: 'John',
+  lastName: 'Smith',
+  email: 'julianhamm1@gmail.com',
+  number: '01234567890',
+  status: 'createRequest',
+  createdAt: 2019-04-23T12:00:56.307Z,
+  updatedAt: 2019-04-23T12:00:56.307Z,
+  __v: 0 }
+
+error [Tue Apr 23 2019 13:08:11 GMT+0100 (British Summer Time)]  POST broacast data endpoint was empty. Request:  undefined
+error [Tue Apr 23 2019 13:08:11 GMT+0100 (British Summer Time)]  Response:  undefined
